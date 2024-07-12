@@ -1,0 +1,63 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/admin_panel/admin_add_product.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1 id="add">Изменение товара</h1>
+    <div class="edit">
+        <div class="form">
+            <form class="forma" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for f in form %}
+                <div class="form-field">
+                    {{ f }}
+                </div>
+                {% endfor %}
+                <div class="form-field">
+                    <button class="form-button" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+        <div class="tags">
+            <h2>Теги:</h2>
+            <div class="tags-list">
+                {% for tag in product_tags.all %}
+                    <div class="tag">
+                        <input onchange="tag_make_other({{tag.id}}, {{product.id}})" class="tag-is_active" type="checkbox" checked>
+                        <span class="tag-name">{{tag.name}}</span>
+                    </div>
+                {% endfor %}
+                {% for tag in other_tags.all %}
+                    <div class="tag">
+                        <input onchange="tag_make_product({{tag.id}}, {{product.id}})" class="tag-is_active" type="checkbox">
+                        <span class="tag-name">{{tag.name}}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="categories">
+            <h2>Категории:</h2>
+            <div class="categories-list">
+                {% for category in product_categories.all %}
+                    <div class="tag">
+                        <input onchange="cat_make_other({{category.id}}, {{product.id}})" class="tag-is_active" type="checkbox" checked>
+                        <span class="tag-name">{{category.name}}</span>
+                    </div>
+                {% endfor %}
+                {% for category in other_categories.all %}
+                    <div class="tag">
+                        <input onchange="cat_make_product({{category.id}}, {{product.id}})" class="tag-is_active" type="checkbox">
+                        <span class="tag-name">{{category.name}}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+<script src="{% static 'js/admin_panel/admin.js' %}"></script>
+{% endblock %}

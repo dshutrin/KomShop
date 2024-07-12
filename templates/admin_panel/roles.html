@@ -1,0 +1,51 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/admin_panel/roles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="head-block">
+        <h1>Управление ролями пользователей</h1>
+        <div class="add-link-block">
+            <a href="/admin_panel/roles/add">Добавить роль</a>
+        </div>
+    </div>
+
+    <table class="tlist">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Доступ к панели администратора</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+                <tr>
+                    <td>{{ role.name }}</td>
+                    <td>
+                        <input type="checkbox"
+                            {% if role.access_to_admin_panel %}
+                                checked="checked"
+                            {% endif %}
+                        >
+                    </td>
+                    <td class="actions-td">
+                        <a class="edit" href="/admin_panel/roles/edit/{{ role.id }}">
+                            <i class="material-icons-outlined">
+                                edit
+                            </i>
+                        </a>
+                        <a class="delete" href="/admin_panel/roles/delete/{{ role.id }}">
+                            <i class="material-icons-outlined">
+                                delete
+                            </i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
