@@ -198,3 +198,16 @@ def admin_panel_add_product_cat(request):
 
 	else:
 		return HttpResponseNotFound(request)
+
+
+@csrf_exempt
+@login_required
+def delete_product(request):
+	if request.user.role.access_to_admin_panel:
+		if request.method == 'POST':
+
+			Product.objects.filter(id=int(request.POST.get('pid'))).delete()
+			return JsonResponse({}, status=200)
+
+	else:
+		return HttpResponseNotFound(request)

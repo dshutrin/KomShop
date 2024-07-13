@@ -16,7 +16,8 @@ admin_panel_urlpatterns = [
 	path('admin_panel/add_tag', admin_panel_add_product_tag),
 
 	path('admin_panel/remove_cat', admin_panel_remove_product_cat),
-	path('admin_panel/add_cat', admin_panel_add_product_cat)
+	path('admin_panel/add_cat', admin_panel_add_product_cat),
+	path('admin_panel/delete_product', delete_product)
 ]
 
 

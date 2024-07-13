@@ -33,10 +33,10 @@
         </thead>
         <tbody>
             {% for product in products %}
-                <tr id="{{product.id}}">
+                <tr id="p-{{product.id}}">
                     <td>
                         {% if product.product_code %}
-                            {{ product.product_code }}
+                            <span>{{ product.product_code }}</span>
                         {% endif %}
                     </td>
                     <td>
@@ -113,14 +113,18 @@
         </tbody>
     </table>
 
-<div id="modal">
-    <span id="nadpis">Удалить этот продукт?</span>
-    <div class="btns">
-        <button id="cancel" onclick="document.getElementById('modal').style.display = 'none'">Отмена</button>
-        <button id="delete" onclick="delet()">Удалить</button>
+    <div id="delete_modal" style="display: none">
+        <div class="head">
+            <h1 id="rm-modal-h"></h1>
+        </div>
+        <div class="body">
+            <button id="cancel-button" type="button" onclick="document.getElementById('delete_modal').style.display = 'none'">Отмена</button>
+            <button id="rm-button" type="button">Удалить</button>
+        </div>
     </div>
-    <div id="id">a</div>
-</div>
 
-<script src="{% static 'js/admin_panel/admin.js' %}"></script>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/admin_panel/products.js' %}"></script>
 {% endblock %}
