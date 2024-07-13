@@ -44,9 +44,9 @@
                             {{ product.name }}
                         {% endif %}
                     </td>
-                    <td>
+                    <td class="img-td">
                         {% if product.photo %}
-                            <a href="{{ product.photo.url }}" style="color: blue" target="_blank">Фото</a>
+                            <img src="{{ product.photo.url }}" style="height: 100px" alt="not found">
                         {% endif %}
                     </td>
                     <td>
@@ -94,17 +94,19 @@
                             {{ product.price }}₽
                         {% endif %}
                     </td>
-                    <td class="actions-td">
-                        <a class="edit" href="/admin_panel/products/edit/{{ product.id }}">
-                            <i class="material-icons-outlined">
-                                edit
-                            </i>
-                        </a>
-                        <button  class="delete" onclick="delete_product({{product.id}})">
-                            <i class="material-icons-outlined">
-                                delete
-                            </i>
-                        </button>
+                    <td>
+                        <div class="actions-td">
+                            <a class="edit" href="/admin_panel/products/edit/{{ product.id }}">
+                                <i class="material-icons-outlined">
+                                    edit
+                                </i>
+                            </a>
+                            <button  class="delete" onclick="delete_product({{product.id}})">
+                                <i class="material-icons-outlined">
+                                    delete
+                                </i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

@@ -5,7 +5,11 @@ table {
     font-size: 24px;
 }
 th, td {
+    table-layout: auto;
     padding: 0.3rem 1rem;
+}
+td {
+   height: 100%;
 }
 table tr th,
 table tr td {
@@ -37,6 +41,10 @@ table tr:last-child td:first-child {
   border-bottom-left-radius: 6px;
 }
 
+.img-td {
+    text-align: center;
+}
+
 /* bottom-right border-radius */
 table tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
@@ -46,6 +54,7 @@ table tr:last-child td:last-child {
   display: grid;
   grid-template-columns: 50% 50%;
   justify-items: center;
+    height: 100%;
 }
 
 .edit {

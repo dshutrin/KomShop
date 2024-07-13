@@ -51,6 +51,11 @@ main {
     width: calc(83vw - 2rem);
     padding: 1rem;
     background-color: #f1f1f1;
+    overflow-y: scroll;
+}
+
+.data::-webkit-scrollbar {
+    display: none;
 }
 
 #logo-block {

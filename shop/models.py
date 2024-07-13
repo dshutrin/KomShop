@@ -90,8 +90,6 @@ class Product(models.Model):
 	concrete = models.FloatField(verbose_name='Бетон', null=True, blank=True)
 	installation_time = models.FloatField(verbose_name='Время установки', null=True, blank=True)
 	price = models.FloatField(verbose_name='Цена')
-	tags = models.ManyToManyField(Tag, null=True, verbose_name='Теги')
-	categories = models.ManyToManyField(Category, null=True, verbose_name='Категории')
 
 	def __str__(self):
 		return f'{self.name} ({self.product_code})'
