@@ -84,8 +84,6 @@ input[type="file"] {
     grid-template-columns: 50% 50%;
 }
 
-
-
 .tags {
     height: 50%;
 }
@@ -128,9 +126,6 @@ input[type="file"] {
     margin: 0.1rem 0.5rem;
 }
 
-
-
-
 .cats {
     height: 50%;
 }
@@ -171,4 +166,13 @@ input[type="file"] {
     border-radius: 15px;
     padding: 0.2rem 0.4rem;
     margin: 0.1rem 0.5rem;
+}
+
+textarea {
+    resize: none;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 5vh;
 }

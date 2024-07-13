@@ -79,3 +79,12 @@ input[type="file"] {
 .form-button:hover {
     background-color: #447ddc;
 }
+
+textarea {
+    resize: none;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    font-size: 20px;
+    border-radius: 5px;
+    height: 5vh;
+}
