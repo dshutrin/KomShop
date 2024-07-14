@@ -122,4 +122,12 @@ body {
         height: calc(100% - 3rem - 18px);
     }
 
+    #search_button {
+        background-color: rgb(105, 209, 137);
+    }
+
+    #search_button:hover {
+        background-color: #39a157;
+    }
+
 }

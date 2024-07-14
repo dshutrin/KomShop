@@ -53,12 +53,18 @@
         {% endfor %}
     </div>
     <div class="pages">
+        {% if lf_page %}
+            <a class="page-num" href="/catalog/page_{{ lf_page }}">{{ lf_page }}</a>
+        {% endif %}
         {% if prev_page %}
             <a class="page-num" href="/catalog/page_{{ prev_page }}">{{ prev_page }}</a>
         {% endif %}
-        <a class="page-num" href="/catalog/page_{{ current_page }}">{{ current_page }}</a>
+        <a class="page-num" style="background-color: #2cac60; color: white;" href="/catalog/page_{{ current_page }}">{{ current_page }}</a>
         {% if next_page %}
             <a class="page-num" href="/catalog/page_{{ next_page }}">{{ next_page }}</a>
+        {% endif %}
+        {% if rf_page %}
+            <a class="page-num" href="/catalog/page_{{ rf_page }}">{{ rf_page }}</a>
         {% endif %}
     </div>
 {% endblock %}

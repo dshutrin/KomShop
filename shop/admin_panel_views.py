@@ -89,9 +89,21 @@ def admin_panel_products_add(request):
 		return HttpResponseNotFound(request)
 
 
-def admin_panel_delete_product(request, pid):
-	Product.objects.get(id=pid).delete()
-	return HttpResponseRedirect('/admin_panel/products')
+@login_required
+def admin_panel_add_tag(request):
+	if request.user.role.access_to_admin_panel:
+		form = TagForm()
+		if request.method == 'GET':
+			return render(request, 'admin_panel/tag_add.html', {
+					'form': form
+				})
+		else:
+			form = TagForm(request.POST)
+			if form.is_valid:
+				form.save()
+				return HttpResponseRedirect('/admin_panel/tags')
+	else:
+		return HttpResponseNotFound(request)
 
 
 @login_required
@@ -207,6 +219,36 @@ def delete_product(request):
 		if request.method == 'POST':
 
 			Product.objects.filter(id=int(request.POST.get('pid'))).delete()
+			return JsonResponse({}, status=200)
+
+	else:
+		return HttpResponseNotFound(request)
+
+
+@csrf_exempt
+@login_required
+def admin_panel_delete_category(request):
+	if request.user.role.access_to_admin_panel:
+		if request.method == 'POST':
+
+			cid = int(request.POST.get('cid'))
+
+			Category.objects.filter(id=cid).delete()
+			return JsonResponse({}, status=200)
+
+	else:
+		return HttpResponseNotFound(request)
+
+
+@csrf_exempt
+@login_required
+def admin_panel_delete_tag(request):
+	if request.user.role.access_to_admin_panel:
+		if request.method == 'POST':
+
+			cid = int(request.POST.get('tid'))
+
+			Tag.objects.filter(id=cid).delete()
 			return JsonResponse({}, status=200)
 
 	else:
