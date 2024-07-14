@@ -22,5 +22,6 @@ admin_panel_urlpatterns = [
 
 
 urlpatterns = [
-	path('', home)
+	path('', get_first_page),
+	path('catalog/page_<int:page>', home)
 ] + admin_panel_urlpatterns

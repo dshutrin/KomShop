@@ -71,6 +71,8 @@ DATABASES = {
     }
 }
 
+# iF3pX4tA
+# pg_dump -d komshop -t shop_product > file.sql
 
 AUTH_PASSWORD_VALIDATORS = [
     {
