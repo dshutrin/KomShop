@@ -107,6 +107,23 @@ def admin_panel_add_tag(request):
 
 
 @login_required
+def admin_panel_add_category(request):
+	if request.user.role.access_to_admin_panel:
+		form = CategoryForm()
+		if request.method == 'GET':
+			return render(request, 'admin_panel/category_add.html', {
+				'form': form
+			})
+		else:
+			form = CategoryForm(request.POST)
+			if form.is_valid:
+				form.save()
+				return HttpResponseRedirect('/admin_panel/categories')
+	else:
+		return HttpResponseNotFound(request)
+
+
+@login_required
 def admin_panel_edit_product(request, pid):
 	if request.user.role.access_to_admin_panel:
 

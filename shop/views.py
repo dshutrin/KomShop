@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login as user_login, logout as user_logout
+
+from .forms import *
 from .models import *
 
 
@@ -48,3 +51,69 @@ def home(request, page):
 		'lf_page': lf_page,
 		'rf_page': rf_page,
 	})
+
+
+def login_view(request):
+	if request.method == 'GET':
+		return render(request, 'base/login.html', {
+			'form': LoginForm()
+		})
+
+	elif request.method == 'POST':
+		login_ = request.POST.get('login')
+		password_ = request.POST.get('password')
+
+		usr = authenticate(request, username=login_, password=password_)
+
+		if usr is not None:
+			user_login(request, usr)
+			return HttpResponseRedirect('/')
+		else:
+			return render(request, 'base/login.html', {
+				'form': LoginForm(request.POST)
+			})
+
+
+def reg_view(request):
+	if request.method == 'GET':
+		return render(request, 'base/register.html', {
+			'form': RegForm()
+		})
+	else:
+		form = RegForm(request.POST)
+		error = ''
+
+		login = request.POST.get('login')
+		password = request.POST.get('password')
+		password2 = request.POST.get('password2')
+		email = request.POST.get('email')
+
+		if form.is_valid():
+			if password != password2:
+				error = 'Введённые пароли не совпадают!\n'
+			if CustomUser.objects.filter(email=email).exists():
+				error = 'Введённый адрес электронной почты занят!\n'
+			if CustomUser.objects.filter(username=login).exists():
+				error = 'Пользователь с таким логином уже существует!\n'
+
+			if error:
+				return render(request, 'base/register.html', {
+					'form': form,
+					'error': error
+				})
+
+			else:
+				new_user = CustomUser.objects.create(
+					username=login,
+					email=email
+				)
+
+				new_user.set_password(password)
+				new_user.save()
+
+				return HttpResponseRedirect('/login')
+
+
+def logout(request):
+	user_logout(request)
+	return HttpResponseRedirect('/')

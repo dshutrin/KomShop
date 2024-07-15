@@ -16,7 +16,22 @@
     <div class="content">
 
         <div class="navbar">
-
+            <div class="site-title">
+                <a href="/">KomShop</a>
+            </div>
+            <div class="site-navbar-title">
+                <h1>Каталог</h1>
+            </div>
+            <div class="login-block">
+                {% if request.user.is_authenticated %}
+                    {% if request.user.role.name == 'Администратор' %}
+                        <a href="/admin_panel">Панель администратора</a>                       
+                    {% endif %}
+                    <a href="/logout">Выйти</a>
+                {% else %}
+                    <a href="/login">Вход</a>
+                {% endif %}
+            </div>
         </div>
 
         <main>
