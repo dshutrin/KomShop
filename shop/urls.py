@@ -24,8 +24,8 @@ admin_panel_urlpatterns = [
 ]
 
 urlpatterns = [
-	path('', get_first_page),
-	path('catalog/page_<int:page>', home),
+	path('', home),
+	path('catalog/page_<int:page>', catalog),
 	path('login', login_view),
 	path('register', reg_view),
 	path('logout', logout)

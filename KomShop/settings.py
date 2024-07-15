@@ -67,9 +67,11 @@ DATABASES = {
         'NAME': 'komshop',
         'PORT': 5432,
         'USER': 'komshop',
-        'PASSWORD': 'komshop_user'
+        'PASSWORD': 'komshop_user',
+        'HOST': 'localhost'
     }
 }
+
 
 # iF3pX4tA
 # pg_dump -d komshop -t shop_product > file.sql
